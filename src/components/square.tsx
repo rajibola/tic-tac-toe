@@ -1,13 +1,9 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
+import {SquareTypes} from '../types/types.d';
 import {SquareStyles as styles} from './styles';
 
-type Square = {
-  box: number | string;
-  onPress: () => void;
-};
-
-export const Square: React.FC<Square> = props => {
+export const Square: React.FC<SquareTypes> = props => {
   return (
     <TouchableOpacity
       style={styles.container}

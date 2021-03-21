@@ -1,6 +1,5 @@
 import {Platform, StyleSheet} from 'react-native';
-import {colors} from '../constants/colors';
-import {font} from '../constants/font';
+import {colors, font} from '../constants';
 import {getStatusBarHeight, hp, wp} from '../utils/layout';
 
 export const IntroStyles = StyleSheet.create({

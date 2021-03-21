@@ -1,14 +1,15 @@
 import {Platform, StyleSheet} from 'react-native';
-import {colors} from '../constants/colors';
-import {font} from '../constants/font';
+import {colors, font} from '../constants';
 import {getStatusBarHeight, hp, wp} from '../utils/layout';
 
 export const RoundButttonStyles = StyleSheet.create({
   title: {
-    ...font[1],
+    ...font[2],
     textTransform: 'uppercase',
     fontWeight: 'bold',
     color: colors.white,
+    fontSize: hp(25),
+    lineHeight: hp(40),
   },
   container: {
     height: hp(40),
@@ -23,6 +24,20 @@ export const RoundButttonStyles = StyleSheet.create({
 });
 
 export const GameStyles = StyleSheet.create({
+  signText: {
+    ...font[1],
+    fontSize: hp(25),
+    lineHeight: hp(30),
+  },
+  sign: {
+    marginHorizontal: wp(10),
+    width: wp(50),
+    height: wp(50),
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: wp(50),
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -42,6 +57,7 @@ export const GameStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    marginVertical: hp(30),
   },
   container: {
     flex: 1,
@@ -72,6 +88,16 @@ export const SquareStyles = StyleSheet.create({
 });
 
 export const BoardStyles = StyleSheet.create({
+  status: {
+    textAlign: 'center',
+    ...font[2],
+    fontSize: hp(30),
+    lineHeight: hp(30),
+    color: colors.blue,
+    textTransform: 'uppercase',
+    marginVertical: hp(20),
+    letterSpacing: hp(1),
+  },
   boxContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',

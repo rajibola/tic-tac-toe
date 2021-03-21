@@ -1,11 +1,6 @@
 import {Alert} from 'react-native';
+import {Dipatch} from '../types/types.d';
 import {initialState} from './context';
-
-export type Dipatch =
-  | {type: 'RESTART_GAME'}
-  | {type: 'REPLAY_GAME'}
-  | {type: 'SAVE_PLAYER_NAME'; payload: {names: string[]}}
-  | {type: 'SET_SQUARE_VALUE'; payload: {id: any}};
 
 export const PlayerReducer = (state = initialState, action: Dipatch) => {
   const {squares, next_player, names, moves} = state.PlayerStore;

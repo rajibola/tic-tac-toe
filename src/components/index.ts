@@ -1,3 +1,3 @@
 export * from './board';
-export * from './game';
 export * from './square';
+export * from './round_button';

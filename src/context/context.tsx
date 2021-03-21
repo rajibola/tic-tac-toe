@@ -1,15 +1,7 @@
 import React from 'react';
 import {createContext} from 'react';
-import {Dipatch, PlayerReducer} from './reducer';
-
-export type InitialStateType = {
-  PlayerStore: {
-    names: string[];
-    squares: any[];
-    next_player: boolean;
-    moves: number;
-  };
-};
+import {Dipatch, InitialStateType} from '../types/types.d';
+import {PlayerReducer} from './reducer';
 
 export const initialState: InitialStateType = {
   PlayerStore: {

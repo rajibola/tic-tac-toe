@@ -6,9 +6,7 @@ import {
   SharedElementsComponentConfig,
 } from 'react-navigation-shared-element';
 import {NavigationParamList} from '../types/types.d';
-import {Game} from '../components';
-import {Home} from '../screens/home';
-import {Intro} from '../screens/intro';
+import {Game, Home, Intro} from '../screens';
 
 const options: StackNavigationOptions = {
   headerShown: false,
@@ -22,19 +20,33 @@ const options: StackNavigationOptions = {
   gestureEnabled: false,
 };
 
+const SharedConfig: SharedElementsComponentConfig = route => {
+  const {names} = route.params;
+  console.log(names);
+  return [
+    {
+      id: `item.${names[0]}.playerOne`,
+      animation: 'move',
+    },
+    {
+      id: `item.${names[1]}.playerTwo`,
+      animation: 'move',
+    },
+  ];
+};
+
 const RootStack = createSharedElementStackNavigator<NavigationParamList>();
 
 export default function MainNavigator() {
   return (
     <RootStack.Navigator initialRouteName="Home" screenOptions={options}>
-      <RootStack.Screen name="Game" component={Game} />
+      <RootStack.Screen
+        name="Game"
+        component={Game}
+        sharedElementsConfig={SharedConfig}
+      />
       <RootStack.Screen name="Home" component={Home} />
       <RootStack.Screen name="Intro" component={Intro} />
-      {/* <RootStack.Screen
-        name="Contact"
-        component={Contact}
-        sharedElementsConfig={SharedConfig}
-      /> */}
     </RootStack.Navigator>
   );
 }

@@ -1,4 +1,3 @@
-import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useContext, useState} from 'react';
 import {
   Alert,
@@ -9,15 +8,8 @@ import {
   View,
 } from 'react-native';
 import {AppContext} from '../context/context';
+import {HomeScreenProps} from '../types/types.d';
 import {HomeStyles as styles} from './styles';
-
-export type HomeScreenProps = {
-  navigation: HomeNavigatonProps;
-};
-export type HomeNavigatonProps = StackNavigationProp<
-  {Intro: undefined},
-  'Intro'
->;
 
 export const Home: React.FC<HomeScreenProps> = props => {
   const [playerOne, setplayerOne] = useState('');

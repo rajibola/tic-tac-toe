@@ -11,23 +11,23 @@ export const Board: React.FC = props => {
 
   let winner = calculateWinner(squares);
 
-  const handleClick = async (i: number) => {
+  const handleClick = (i: number) => {
     if (winner || squares[i]) return;
 
-    await dispatch({type: 'SET_SQUARE_VALUE', payload: {id: i}});
+    dispatch({type: 'SET_SQUARE_VALUE', payload: {id: i}});
   };
 
   let status;
   if (winner) {
-    status = `${next_player ? names[0] : names[1]} has won`;
+    status = `${!next_player ? names[0] : names[1]} has won`;
   } else if (!winner && moves === squares.length) {
     status = 'draw';
   } else {
-    status = next_player ? names[0] + ' turn' + 'X' : names[1] + ' turn' + 'O';
+    status = (next_player ? names[0] : names[1]) + ' turn';
   }
   return (
     <View>
-      <Text>{status}</Text>
+      <Text style={styles.status}>{status}</Text>
       <View style={styles.boxContainer}>
         {squares.map((a, i) => (
           <Square box={squares[i]} onPress={() => handleClick(i)} key={i} />
