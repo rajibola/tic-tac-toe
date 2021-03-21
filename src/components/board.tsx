@@ -13,7 +13,6 @@ export const Board: React.FC = props => {
 
   const handleClick = (i: number) => {
     if (winner || squares[i]) return;
-
     dispatch({type: 'SET_SQUARE_VALUE', payload: {id: i}});
   };
 
