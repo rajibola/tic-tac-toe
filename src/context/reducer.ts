@@ -4,23 +4,23 @@ import {initialState} from './context';
 export type Dipatch =
   | {type: 'RESTART_GAME'}
   | {type: 'REPLAY_GAME'}
-  | {type: 'SAVE_PLAYER_NAME'; payload: {playerOne: string; playerTwo: string}}
+  | {type: 'SAVE_PLAYER_NAME'; payload: {names: string[]}}
   | {type: 'SET_SQUARE_VALUE'; payload: {id: any}};
 
 export const PlayerReducer = (state = initialState, action: Dipatch) => {
+  const {squares, next_player, names, moves} = state.PlayerStore;
+
   switch (action.type) {
     case 'RESTART_GAME': {
       return state;
     }
 
     case 'REPLAY_GAME': {
-      const {squares, next_player, names, moves} = state.PlayerStore;
-
       return {
         ...state,
         PlayerStore: {
           squares: squares.fill(null),
-          next_player,
+          next_player: false,
           names,
           moves: 0,
         },
@@ -28,11 +28,18 @@ export const PlayerReducer = (state = initialState, action: Dipatch) => {
     }
 
     case 'SAVE_PLAYER_NAME': {
-      return state;
+      return {
+        ...state,
+        PlayerStore: {
+          names: action.payload.names,
+          squares,
+          next_player,
+          moves,
+        },
+      };
     }
 
     case 'SET_SQUARE_VALUE': {
-      const {squares, next_player, names, moves} = state.PlayerStore;
       const squaresCopy = squares.slice();
       squaresCopy[action.payload.id] = next_player ? 'X' : 'O';
       console.log(moves);

@@ -14,7 +14,7 @@ export type InitialStateType = {
 export const initialState: InitialStateType = {
   PlayerStore: {
     squares: Array(9).fill(null),
-    names: ['ridwan', 'maryam'],
+    names: [],
     next_player: false,
     moves: 0,
   },

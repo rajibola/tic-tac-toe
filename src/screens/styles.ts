@@ -3,7 +3,33 @@ import {colors} from '../constants/colors';
 import {font} from '../constants/font';
 import {getStatusBarHeight, hp, wp} from '../utils/layout';
 
-export const IntroStyles = StyleSheet.create({});
+export const IntroStyles = StyleSheet.create({
+  player: {
+    alignSelf: 'center',
+    fontSize: hp(35),
+    fontFamily: 'YanoneKaffeesatz-Regular',
+    textTransform: 'lowercase',
+  },
+  vs: {
+    ...font[1],
+    lineHeight: hp(55),
+    fontSize: hp(50),
+    marginHorizontal: wp(4),
+    letterSpacing: -wp(5),
+  },
+  textContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export const HomeStyles = StyleSheet.create({
   input: {

@@ -8,6 +8,7 @@ import {
 import {NavigationParamList} from '../types/types.d';
 import {Game} from '../components';
 import {Home} from '../screens/home';
+import {Intro} from '../screens/intro';
 
 const options: StackNavigationOptions = {
   headerShown: false,
@@ -28,6 +29,7 @@ export default function MainNavigator() {
     <RootStack.Navigator initialRouteName="Home" screenOptions={options}>
       <RootStack.Screen name="Game" component={Game} />
       <RootStack.Screen name="Home" component={Home} />
+      <RootStack.Screen name="Intro" component={Intro} />
       {/* <RootStack.Screen
         name="Contact"
         component={Contact}

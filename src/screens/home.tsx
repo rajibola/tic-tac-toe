@@ -1,16 +1,41 @@
-import React, {useState} from 'react';
+import {StackNavigationProp} from '@react-navigation/stack';
+import React, {useContext, useState} from 'react';
 import {
+  Alert,
   KeyboardAvoidingView,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import {AppContext} from '../context/context';
 import {HomeStyles as styles} from './styles';
 
-export const Home: React.FC = props => {
+export type HomeScreenProps = {
+  navigation: HomeNavigatonProps;
+};
+export type HomeNavigatonProps = StackNavigationProp<
+  {Intro: undefined},
+  'Intro'
+>;
+
+export const Home: React.FC<HomeScreenProps> = props => {
   const [playerOne, setplayerOne] = useState('');
   const [playerTwo, setplayerTwo] = useState('');
+  const {dispatch} = useContext(AppContext);
+
+  const handleStart = () => {
+    if (playerOne && playerTwo) {
+      dispatch({
+        type: 'SAVE_PLAYER_NAME',
+        payload: {names: [playerOne, playerTwo]},
+      });
+
+      props.navigation.navigate('Intro');
+    } else {
+      return Alert.alert('enter a valid name');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -41,7 +66,7 @@ export const Home: React.FC = props => {
         </View>
       </KeyboardAvoidingView>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleStart}>
         <Text style={styles.buttonTitle}>Start Game</Text>
       </TouchableOpacity>
     </View>
