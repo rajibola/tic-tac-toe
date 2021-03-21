@@ -1,5 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {fireEvent, render} from '@testing-library/react-native';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import * as React from 'react';
 import MainNavigator from '../src/navigation';
 
@@ -33,9 +33,12 @@ describe('Testing navigation between screens', () => {
       </NavigationContainer>
     );
 
-    const {findByText, findByPlaceholderText, findByDisplayValue} = render(
-      component,
-    );
+    const {
+      findByText,
+      findByPlaceholderText,
+      findByDisplayValue,
+      getByText,
+    } = render(component);
 
     const button = await findByText('Start Game');
 
@@ -55,5 +58,32 @@ describe('Testing navigation between screens', () => {
     expect(ridwan).toBeTruthy();
     expect(smiley).toBeTruthy();
     expect(vs).toBeTruthy();
+  });
+
+  test('Navigating from home to game screen and pressing restart button to go back to home', async () => {
+    const component = (
+      <NavigationContainer>
+        <MainNavigator />
+      </NavigationContainer>
+    );
+
+    const {findByText, findByPlaceholderText, getByText} = render(component);
+
+    const button = await findByText('Start Game');
+
+    const textInputOne = await findByPlaceholderText('enter player one name');
+    const textInputTwo = await findByPlaceholderText('enter player two name');
+
+    fireEvent.changeText(textInputOne, 'ridwan');
+    fireEvent.changeText(textInputTwo, 'smiley');
+    fireEvent.press(button);
+
+    const restart = await waitFor(() => getByText('restart'));
+
+    fireEvent.press(restart);
+
+    const home = await waitFor(() => getByText('Start Game'));
+
+    expect(home).toBeTruthy();
   });
 });
