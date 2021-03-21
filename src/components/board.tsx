@@ -1,57 +1,29 @@
-import React, {useState} from 'react';
-import {Alert, Text, View} from 'react-native';
+import React, {useContext} from 'react';
+import {Text, View} from 'react-native';
 import {Square} from '.';
+import {AppContext} from '../context/context';
 import {calculateWinner} from '../utils/helpers';
 import {BoardStyles as styles} from './styles';
 
 export const Board: React.FC = props => {
-  const [squares, setSquare] = useState(Array(9).fill(null));
-  const [player, setPlayer] = useState(true);
-  const [alert, setAlert] = useState(false);
-  const [counter, setCounter] = useState(0);
+  const {state, dispatch} = useContext(AppContext);
+  const {squares, next_player, names, moves} = state.PlayerStore;
 
-  const handleClick = (i: any) => {
-    const squaresCopy = squares.slice();
-    if (calculateWinner(squares) || squares[i]) return;
-    setCounter(counter + 1);
+  let winner = calculateWinner(squares);
 
-    squaresCopy[i] = player ? 'X' : 'O';
-    setSquare(squaresCopy);
-    setPlayer(!player);
+  const handleClick = async (i: number) => {
+    if (winner || squares[i]) return;
 
-    if (counter === 8 && !winner) {
-      setAlert(true);
-    }
+    await dispatch({type: 'SET_SQUARE_VALUE', payload: {id: i}});
   };
-
-  const winner = calculateWinner(squares);
-
-  if (alert) {
-    Alert.alert('no winner', '', [
-      {
-        text: 'Replay',
-        onPress: () => {
-          setSquare(squares.map(_ => null));
-          setCounter(0);
-        },
-      },
-      {
-        text: 'Restart Game',
-        onPress: () => {
-          setSquare(squares.map(_ => null));
-          setCounter(0);
-        },
-      },
-    ]);
-
-    setAlert(false);
-  }
 
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = `${next_player ? names[0] : names[1]} has won`;
+  } else if (!winner && moves === squares.length) {
+    status = 'draw';
   } else {
-    status = 'Next player: ' + (player ? 'X' : 'O');
+    status = next_player ? names[0] + ' turn' + 'X' : names[1] + ' turn' + 'O';
   }
   return (
     <View>

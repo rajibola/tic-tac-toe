@@ -7,15 +7,17 @@
  */
 
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
-import {Game} from './src/components';
+import {AppProvider} from './src/context/context';
+import MainNavigator from './src/navigation';
+import {NavigationContainer} from '@react-navigation/native';
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <Text>Hello TIC TAC TOE</Text>
-      <Game />
-    </SafeAreaView>
+    <AppProvider>
+      <NavigationContainer>
+        <MainNavigator />
+      </NavigationContainer>
+    </AppProvider>
   );
 };
 

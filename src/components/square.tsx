@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Alert, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {Text, TouchableOpacity} from 'react-native';
 import {SquareStyles as styles} from './styles';
 
 type Square = {
@@ -9,7 +9,10 @@ type Square = {
 
 export const Square: React.FC<Square> = props => {
   return (
-    <TouchableOpacity style={styles.container} onPress={props.onPress}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={props.onPress}
+      activeOpacity={0.8}>
       <Text style={styles.text}>{props.box}</Text>
     </TouchableOpacity>
   );
