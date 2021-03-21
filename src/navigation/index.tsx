@@ -22,7 +22,6 @@ const options: StackNavigationOptions = {
 
 const SharedConfig: SharedElementsComponentConfig = route => {
   const {names} = route.params;
-  console.log(names);
   return [
     {
       id: `item.${names[0]}.playerOne`,

@@ -1,7 +1,5 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {fireEvent, render, waitFor} from '@testing-library/react-native';
+import {fireEvent, render} from '@testing-library/react-native';
 import * as React from 'react';
-import MainNavigator from '../src/navigation';
 import {Game} from '../src/screens';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
@@ -48,26 +46,5 @@ describe('Testing Game screen', () => {
     fireEvent.press(restart);
 
     expect(props.navigation.pop).toHaveBeenCalled();
-  });
-
-  test('Playing th game between two users', async () => {
-    const component = (
-      <NavigationContainer>
-        <MainNavigator />
-      </NavigationContainer>
-    );
-
-    const {findByText, findByPlaceholderText, getByText} = render(component);
-
-    const button = await findByText('Start Game');
-
-    const textInputOne = await findByPlaceholderText('enter player one name');
-    const textInputTwo = await findByPlaceholderText('enter player two name');
-
-    fireEvent.changeText(textInputOne, 'ridwan');
-    fireEvent.changeText(textInputTwo, 'smiley');
-    fireEvent.press(button);
-
-    const restart = await waitFor(() => getByText('restart'));
   });
 });
