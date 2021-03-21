@@ -1,10 +1,8 @@
-import {NavigationContainer} from '@react-navigation/native';
 import {fireEvent, render} from '@testing-library/react-native';
 import * as React from 'react';
-import MainNavigator from '../src/navigation';
 import {Game} from '../src/screens';
 
-// jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
 jest.setTimeout(30000);
 
@@ -39,9 +37,7 @@ describe('Testing Game screen', () => {
     const props: any = createTestProps({});
     const component = <Game {...props} />;
 
-    const {findByText, findByPlaceholderText, findByDisplayValue} = render(
-      component,
-    );
+    const {findByText} = render(component);
 
     const replay = await findByText('replay');
     const restart = await findByText('restart');

@@ -3,6 +3,8 @@ import {fireEvent, render} from '@testing-library/react-native';
 import * as React from 'react';
 import MainNavigator from '../src/navigation';
 
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+
 describe('Testing navigation between screens', () => {
   test('page contains the textInputs, text and button', async () => {
     const component = (
