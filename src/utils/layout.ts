@@ -40,14 +40,14 @@ const heightPercentageToDP = (heightPercent: string) => {
 
 // UI Design  dimension is 414 x 731
 export const hp = (height: number) => {
-  return heightPercentageToDP(((height / 896) * 100).toString());
+  return heightPercentageToDP(((height / 812) * 100).toString());
 };
 
 /**
  * correct calculation for resposive widths
  */
 export const wp = (width: number) => {
-  return widthPercentageToDP(((width / 414) * 100).toString());
+  return widthPercentageToDP(((width / 375) * 100).toString());
 };
 
 export const paddingTopiOS = getStatusBarHeight();

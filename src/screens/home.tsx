@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {RoundButtton} from '../components';
 import {AppContext} from '../context/context';
 import {HomeScreenProps} from '../types/types.d';
-import {hp} from '../utils/layout';
 import {HomeStyles as styles} from './styles';
 
 export const Home: React.FC<HomeScreenProps> = props => {
@@ -59,9 +59,12 @@ export const Home: React.FC<HomeScreenProps> = props => {
         </View>
       </KeyboardAvoidingView>
 
-      <TouchableOpacity style={styles.button} onPress={handleStart}>
-        <Text style={styles.buttonTitle}>Start Game</Text>
-      </TouchableOpacity>
+      <RoundButtton
+        style={styles.button}
+        title="Start Game"
+        onPress={handleStart}
+        titleStyles={styles.buttonTitle}
+      />
     </View>
   );
 };
