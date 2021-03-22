@@ -1,4 +1,4 @@
-# tic-tac-toe [![rajibola](https://circleci.com/gh/rajibola/tic-tac-toe.svg?style=shield)](https://app.circleci.com/pipelines/github/rajibola/tic-tac-toe)
+# tic-tac-toe [![rajibola](https://circleci.com/gh/rajibola/tic-tac-toe.svg?style=svg)](https://app.circleci.com/pipelines/github/rajibola/tic-tac-toe)
 
 ## Preview
 

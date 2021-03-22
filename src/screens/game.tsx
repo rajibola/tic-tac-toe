@@ -1,8 +1,7 @@
-import React, {useContext} from 'react';
-import {Text, View} from 'react-native';
+import React, {useContext, useEffect} from 'react';
+import {Alert, BackHandler, Text, View} from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
-import {Board} from '../components';
-import {RoundButtton} from '../components/round_button';
+import {Board, RoundButtton} from '../components';
 import {GameStyles as styles} from '../components/styles';
 import {AppContext} from '../context/context';
 import {GameProps} from '../types/types.d';
@@ -16,6 +15,25 @@ export const Game: React.FC<GameProps> = ({navigation, route}) => {
       <Text style={styles.signText}>{a}</Text>
     </View>
   );
+
+  const backAction = () => {
+    Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+      {
+        text: 'Yes',
+        onPress: () => {
+          dispatch({type: 'REPLAY_GAME'}), navigation.pop(2);
+        },
+      },
+    ]);
+    return true;
+  };
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -35,7 +53,9 @@ export const Game: React.FC<GameProps> = ({navigation, route}) => {
       <View style={styles.row}>
         <RoundButtton
           title="replay"
-          onPress={() => dispatch({type: 'REPLAY_GAME'})}
+          onPress={() => {
+            dispatch({type: 'REPLAY_GAME'}), navigation.goBack();
+          }}
         />
         <RoundButtton
           title="restart"
