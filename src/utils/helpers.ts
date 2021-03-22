@@ -1,5 +1,3 @@
-import {Alert} from 'react-native';
-
 export const calculateWinner = (squares: any[]) => {
   const lines = [
     [0, 1, 2],
@@ -19,24 +17,3 @@ export const calculateWinner = (squares: any[]) => {
   }
   return null;
 };
-
-// export const renderAlert=()=>{
-//   Alert.alert('no winner', '', [
-//     {
-//       text: 'Replay',
-//       onPress: () => {
-//         setSquare(squares.map(_ => null));
-//         setCounter(0);
-//       },
-//     },
-//     {
-//       text: 'Restart Game',
-//       onPress: () => {
-//         setSquare(squares.map(_ => null));
-//         setCounter(0);
-//       },
-//     },
-//   ]);
-
-//   setAlert(false);
-// }
