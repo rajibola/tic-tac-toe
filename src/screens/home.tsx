@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {AppContext} from '../context/context';
 import {HomeScreenProps} from '../types/types.d';
+import {hp} from '../utils/layout';
 import {HomeStyles as styles} from './styles';
 
 export const Home: React.FC<HomeScreenProps> = props => {
@@ -32,7 +33,7 @@ export const Home: React.FC<HomeScreenProps> = props => {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView behavior="position">
-        <View>
+        <View style={styles.inputContainer}>
           <Text style={styles.title}>
             Hello <Text style={styles.o}>O</Text>
             <Text style={styles.team}>.team</Text>

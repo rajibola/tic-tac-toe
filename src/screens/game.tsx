@@ -21,7 +21,7 @@ export const Game: React.FC<GameProps> = ({navigation, route}) => {
       {
         text: 'Yes',
         onPress: () => {
-          dispatch({type: 'REPLAY_GAME'}), navigation.pop(2);
+          navigation.pop(2), dispatch({type: 'REPLAY_GAME'});
         },
       },
     ]);
@@ -60,7 +60,7 @@ export const Game: React.FC<GameProps> = ({navigation, route}) => {
         <RoundButtton
           title="restart"
           onPress={() => {
-            dispatch({type: 'REPLAY_GAME'}), navigation.pop(2);
+            navigation.pop(2), dispatch({type: 'REPLAY_GAME'});
           }}
         />
       </View>

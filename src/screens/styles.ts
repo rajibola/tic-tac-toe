@@ -31,6 +31,9 @@ export const IntroStyles = StyleSheet.create({
 });
 
 export const HomeStyles = StyleSheet.create({
+  inputContainer: {
+    marginBottom: hp(200),
+  },
   input: {
     borderBottomWidth: 1,
     height: hp(40),
@@ -38,6 +41,7 @@ export const HomeStyles = StyleSheet.create({
     ...font[1],
     fontSize: hp(25),
     lineHeight: hp(25),
+    padding: 0,
   },
   buttonTitle: {
     ...font[2],
