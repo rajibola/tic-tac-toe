@@ -18,11 +18,11 @@ export const Board: React.FC = props => {
 
   let status;
   if (winner) {
-    status = `${!next_player ? names[0] : names[1]} has won`;
+    status = `${!next_player ? names[0] : names[1]} wins!`;
   } else if (!winner && moves === squares.length) {
     status = 'draw';
   } else {
-    status = (next_player ? names[0] : names[1]) + ' turn';
+    status = (next_player ? names[0] : names[1]) + "'s turn";
   }
   return (
     <View>
